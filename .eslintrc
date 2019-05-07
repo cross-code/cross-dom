@@ -1,0 +1,6 @@
+{
+    "extends": "byungi",
+    "env": {
+        "browser": true
+    }
+}

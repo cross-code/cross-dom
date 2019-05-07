@@ -1,0 +1,27 @@
+{
+    "name": "cross-dom",
+    "description": "A functional DOM library for modern browsers.",
+    "keywords": [
+        "dom",
+        "jquery",
+        "fp",
+        "functional"
+    ],
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "tape lib/**/*.test.js -r ./browser-env | tap-summary",
+        "test-w": "tape-watch lib/**/*.test.js -r ../browser-env | tap-summary",
+        "test-browser": "airtap lib/**/*.test.js --local"
+    },
+    "devDependencies": {
+        "airtap": "^2.0.2",
+        "browser-env": "^3.2.6",
+        "eslint": "^5.16.0",
+        "eslint-config-byungi": "^0.2.9",
+        "tap-summary": "^4.0.0",
+        "tape": "^4.10.1",
+        "tape-watch": "^2.3.0"
+    }
+}
