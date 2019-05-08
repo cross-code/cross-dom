@@ -1,6 +1,6 @@
 {
     "name": "cross-dom",
-    "description": "A functional DOM library for modern browsers.",
+    "description": "A dom manipulation library, written in functional style.",
     "keywords": [
         "dom",
         "jquery",
@@ -11,15 +11,21 @@
     "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "test": "tape lib/**/*.test.js -r ./browser-env | tap-summary",
-        "test-w": "tape-watch lib/**/*.test.js -r ../browser-env | tap-summary",
-        "test-browser": "airtap lib/**/*.test.js --local"
+        "build": "babel src --out-dir lib",
+        "test": "tape src/**/*.test.js -r esm -r ./browser-env | tap-summary",
+        "test-w": "tape-watch src/**/*.test.js -r esm  -r ../browser-env | tap-summary",
+        "test-browser": "airtap src/**/*.test.js --local"
     },
     "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.4",
+        "@babel/preset-env": "^7.4.4",
         "airtap": "^2.0.2",
+        "babelify": "^10.0.0",
         "browser-env": "^3.2.6",
         "eslint": "^5.16.0",
         "eslint-config-byungi": "^0.2.9",
+        "esm": "^3.2.22",
         "tap-summary": "^4.0.0",
         "tape": "^4.10.1",
         "tape-watch": "^2.3.0"

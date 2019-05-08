@@ -1,3 +1,8 @@
 browsers:
   - name: chrome
     version: latest
+browserify:
+  - transform: babelify
+    sourceType: module
+    presets:
+        - "@babel/preset-env"
