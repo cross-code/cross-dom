@@ -12,7 +12,7 @@
     "license": "MIT",
     "scripts": {
         "build": "babel src --out-dir lib",
-        "test": "tape src/**/*.test.js -r esm -r ./browser-env | tap-summary",
+        "test": "tape src/**/*.test.js -r @babel/register -r ./browser-env | tap-summary",
         "test-w": "tape-watch src/**/*.test.js -r @babel/register -r ../browser-env | tap-summary",
         "test-browser": "airtap src/**/*.test.js --local"
     },
@@ -26,7 +26,6 @@
         "browser-env": "^3.2.6",
         "eslint": "^5.16.0",
         "eslint-config-byungi": "^0.2.9",
-        "esm": "^3.2.22",
         "tap-summary": "^4.0.0",
         "tape": "^4.10.1",
         "tape-watch": "^2.3.0"
