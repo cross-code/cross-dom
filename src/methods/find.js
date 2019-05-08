@@ -1,7 +1,10 @@
-import flatMap from '../helpers/flatMap'
+import { flatMap, pipe, unique } from '../helpers'
 
 /**
  * @param {selector} selector
  * @returns {(elements: Element[]) => Element[]}
  */
-export default selector => flatMap(el => [...el.querySelectorAll(selector)])
+export default selector => pipe(
+    flatMap(el => [...el.querySelectorAll(selector)]),
+    unique
+)
