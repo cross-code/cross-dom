@@ -5,18 +5,18 @@
 
 ## Example
 ```js
-import {chain, $, find, addClass} from 'cross-dom'
+import {chain, $, $find, $addClass} from 'cross-dom'
 
 chain(
     $('#content'),
-    find('.child'),
-    addClass('active')
+    $find('.child'),
+    $addClass('active')
 )
 
 // or using a pipeline operator (https://github.com/tc39/proposal-pipeline-operator)
 $('#content')
-    |> find('.child')
-    |> addClass('active')
+    |> $find('.child')
+    |> $addClass('active')
 ```
 
 ### Supports chain style
@@ -24,8 +24,8 @@ $('#content')
 import $ from 'cross-dom/chain'
 
 $('#content')
-    .find('.child')
-    .addClass('active')
+    .$find('.child')
+    .$addClass('active')
 ```
 
 ## Motivation
