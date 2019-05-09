@@ -5,7 +5,7 @@
 
 ## Example
 ```js
-import {chain, $, find, addClass} from 'cross-dom/'
+import {chain, $, find, addClass} from 'cross-dom'
 
 chain(
     $('#content'),

@@ -11,10 +11,12 @@
     "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "build": "babel src --out-dir lib",
-        "test": "tape src/**/*.test.js -r @babel/register -r ./browser-env | tap-summary",
-        "test-w": "tape-watch src/**/*.test.js -r @babel/register -r ../browser-env | tap-summary",
-        "test-browser": "airtap src/**/*.test.js --local"
+        "clean": "rm -rf lib",
+        "build": "npm run index && npm run clean && babel src --out-dir lib --ignore src/*.test.js",
+        "test": "tape src/*.test.js -r @babel/register -r ./browser-env | tap-summary",
+        "test-w": "tape-watch src/*.test.js -r @babel/register -r ../browser-env | tap-summary",
+        "test-browser": "airtap src/*.test.js --local",
+        "index": "create-index -i -u src && eslint --fix src/index.js"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
@@ -24,6 +26,7 @@
         "airtap": "^2.0.2",
         "babelify": "^10.0.0",
         "browser-env": "^3.2.6",
+        "create-index": "^2.4.0",
         "eslint": "^5.16.0",
         "eslint-config-byungi": "^0.2.9",
         "tap-summary": "^4.0.0",

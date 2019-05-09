@@ -1,5 +1,5 @@
-import test from 'tape'
 import pipe from './pipe'
+const test = require('tape')
 
 test('pipe', t => {
     const f1 = a => a ** a

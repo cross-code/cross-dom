@@ -1,5 +1,5 @@
-import test from 'tape'
 import $ from './$'
+const test = require('tape')
 
 test('$', t => {
     document.body.innerHTML = `
@@ -10,5 +10,6 @@ test('$', t => {
     t.is($('.a').length, 1)
     t.true($('div')[0] instanceof HTMLDivElement)
     t.is($('div')[1].className, 'a')
+    t.pass()
     t.end()
 })

@@ -1,5 +1,5 @@
-import test from 'tape'
 import flatMap from './flatMap'
+const test = require('tape')
 
 test('flatMap', t => {
     const arr = [1, 2, 3, 4]

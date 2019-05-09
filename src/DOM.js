@@ -1,4 +1,4 @@
-import { find } from './methods'
+import { find } from '.'
 
 export default class DOM {
     /**

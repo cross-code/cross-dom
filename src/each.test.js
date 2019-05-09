@@ -1,5 +1,5 @@
-import test from 'tape'
 import each from './each'
+const test = require('tape')
 
 test('each', t => {
     t.plan(4)

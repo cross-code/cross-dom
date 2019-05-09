@@ -1,4 +1,4 @@
-import { each } from '../helpers'
+import each from './each'
 
 /**
  * @param {string[]} classes

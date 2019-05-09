@@ -1,5 +1,5 @@
-import test from 'tape'
 import addClass from './addClass'
+const test = require('tape')
 
 test('addClass', t => {
     const div = document.createElement('div')

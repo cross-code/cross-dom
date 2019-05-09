@@ -1,5 +1,5 @@
-import test from 'tape'
 import chain from './chain'
+const test = require('tape')
 
 test('chain', t => {
     const f1 = a => a ** a
