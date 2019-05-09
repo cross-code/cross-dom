@@ -2,4 +2,4 @@
  * @param {string} selector
  * @returns {Element[]}
  */
-export default selector => Array.from(document.querySelectorAll(selector))
+export default selector => [...document.querySelectorAll(selector)]

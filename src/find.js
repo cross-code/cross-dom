@@ -7,6 +7,6 @@ import unique from './unique'
  * @returns {(elements: Element[]) => Element[]}
  */
 export default selector => pipe(
-    flatMap(el => Array.from(el.querySelectorAll(selector))),
+    flatMap(el => [...el.querySelectorAll(selector)]),
     unique
 )
