@@ -11,7 +11,8 @@ export default v => {
 
 function iterToArray (iter) {
     const arr = []
-    for (let res = iter.next(); !res.done; res = iter.next()) arr.push(res.value)
+    let res
+    while (!(res = iter.next()).done) arr.push(res.value)
     return arr
 }
 

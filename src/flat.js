@@ -1,19 +1,19 @@
 import generator from './generator'
 
 export default (depth = 1) => generator(iter => {
-    const acc = []
+    const queue = []
     return () => {
-        if (acc.length > 0) return { done: false, value: acc.shift() }
+        if (queue.length > 0) return { value: queue.shift() }
 
-        let done, value
-        while ({ done, value } = iter.next(), !done) {
-            if (!Array.isArray(value)) return { done: false, value }
-            if (value.length === 0) continue
+        let res
+        while (!(res = iter.next()).done) {
+            if (!Array.isArray(res.value)) return { value: res.value }
+            if (res.value.length === 0) continue
 
-            const arr = flat(value, depth - 1)
-            acc.push(...arr.slice(1))
+            const arr = flat(res.value, depth - 1)
+            queue.push(...arr.slice(1))
 
-            return { done: false, value: arr[0] }
+            return { value: arr[0] }
         }
 
         return { done: true }
