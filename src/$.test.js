@@ -1,15 +1,26 @@
 import $ from './$'
+import chain from './chain'
+import toArray from './toArray'
 const test = require('tape')
 
-test.skip('$', t => {
-    document.body.innerHTML = `
-        <div></div>
-        <div class="a"></div>
-    `
-    t.is($('div').length, 2)
-    t.is($('.a').length, 1)
-    t.true($('div')[0] instanceof HTMLDivElement)
-    t.is($('div')[1].className, 'a')
-    t.pass()
+const m = selector => chain(
+    $(selector),
+    toArray
+)
+
+test('$', t => {
+    document.body.insertAdjacentHTML('beforeend', `
+        <div class="a">
+            <div class="b"></div>
+            <div class="b" id="c"></div>
+        </div>
+    `)
+
+    t.is(m('.a').length, 1)
+    t.is(m('.a>.b').length, 2)
+    t.true(m('.a')[0] instanceof HTMLDivElement)
+    t.is(m('.a >.b')[1].id, 'c')
+
+    m('.a')[0].remove()
     t.end()
 })

@@ -1,3 +1,9 @@
-import map from './map'
+import pipe from './pipe'
+import toArray from './toArray'
+import toIter from './toIter'
 
-export default eacher => map((v, i) => (eacher(v, i), v))
+export default eacher => pipe(
+    toArray,
+    arr => (arr.forEach(eacher), arr),
+    toIter
+)
