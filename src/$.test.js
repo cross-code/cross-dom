@@ -1,7 +1,7 @@
 import $ from './$'
 const test = require('tape')
 
-test('$', t => {
+test.skip('$', t => {
     document.body.innerHTML = `
         <div></div>
         <div class="a"></div>

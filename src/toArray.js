@@ -1,7 +1,8 @@
 const $$symbol = Symbol && Symbol.iterator
 
 export default v => {
-    const isIter = typeof v.next === 'function'
+    if (v === undefined || v === null) throw new TypeError('Cannot convert `undefined` or `null` to array')
+    const isIter = v && typeof v.next === 'function'
     if (Array.from && (!isIter || ($$symbol && v[$$symbol]))) return Array.from(v)
     if (Array.isArray(v)) return [...v]
     if (isIter) return iterToArray(v)
@@ -15,8 +16,8 @@ function iterToArray (iter) {
 }
 
 function arrLikeToArray (arrLike) {
-    let len = arrLike.length || 0
-    const arr = Array(len)
-    while (len--) arr[len] = arrLike[len]
+    let i = arrLike.length || 0
+    const arr = Array(i)
+    while (i--) arr[i] = arrLike[i]
     return arr
 }

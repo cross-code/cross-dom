@@ -1,1 +1,3 @@
-export default selector => [...document.querySelectorAll(selector)]
+import toIter from './toIter'
+
+export default selector => toIter(document.querySelectorAll(selector))

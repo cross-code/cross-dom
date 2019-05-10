@@ -5,7 +5,7 @@ export default filterer => generator(iter => {
     return () => {
         let done, value
         while ({ done, value } = iter.next(), !done) {
-            if (filterer(value, i++)) return { done: false, value: value }
+            if (filterer(value, i++)) return { done: false, value }
         }
         return { done: true }
     }

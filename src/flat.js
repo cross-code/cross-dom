@@ -5,14 +5,18 @@ export default (depth = 1) => generator(iter => {
     return () => {
         if (acc.length > 0) return { done: false, value: acc.shift() }
 
-        const { done, value } = iter.next()
-        if (done) return { done }
-        if (!Array.isArray(value)) return { done: false, value }
+        let done, value
+        while ({ done, value } = iter.next(), !done) {
+            if (!Array.isArray(value)) return { done: false, value }
+            if (value.length === 0) continue
 
-        const arr = flat(value, depth - 1)
-        acc.push(...arr.slice(1))
+            const arr = flat(value, depth - 1)
+            acc.push(...arr.slice(1))
 
-        return { done: false, value: arr[0] }
+            return { done: false, value: arr[0] }
+        }
+
+        return { done: true }
     }
 })
 

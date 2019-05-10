@@ -7,18 +7,24 @@ test('toIter', t => {
     t.deepEqual(iter1.next(), { done: false, value: 2 })
     t.deepEqual(iter1.next(), { done: false, value: 3 })
     t.deepEqual(iter1.next(), { done: true, value: undefined })
+    t.end()
+})
 
-    const iter2 = toIter([1, 2, 3])
-    iter2[Symbol.iterator] = undefined
-    t.deepEqual(iter2.next(), { done: false, value: 1 })
-    t.deepEqual(iter2.next(), { done: false, value: 2 })
-    t.deepEqual(iter2.next(), { done: false, value: 3 })
-    t.deepEqual(iter2.next(), { done: true, value: undefined })
+test('toIter - custom iterator', t => {
+    const iter = toIter([1, 2, 3])
+    iter[Symbol.iterator] = undefined
+    t.deepEqual(iter.next(), { done: false, value: 1 })
+    t.deepEqual(iter.next(), { done: false, value: 2 })
+    t.deepEqual(iter.next(), { done: false, value: 3 })
+    t.deepEqual(iter.next(), { done: true, value: undefined })
+    t.end()
+})
 
-    const iter3 = toIter({ 0: 1, 1: 2, 2: 3, length: 3 })
-    t.deepEqual(iter3.next(), { done: false, value: 1 })
-    t.deepEqual(iter3.next(), { done: false, value: 2 })
-    t.deepEqual(iter3.next(), { done: false, value: 3 })
-    t.deepEqual(iter3.next(), { done: true, value: undefined })
+test('toIter - arrayLike', t => {
+    const iter = toIter({ 0: 1, 1: 2, 2: 3, length: 3 })
+    t.deepEqual(iter.next(), { done: false, value: 1 })
+    t.deepEqual(iter.next(), { done: false, value: 2 })
+    t.deepEqual(iter.next(), { done: false, value: 3 })
+    t.deepEqual(iter.next(), { done: true, value: undefined })
     t.end()
 })
