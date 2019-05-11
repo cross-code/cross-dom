@@ -1,12 +1,15 @@
-const $$symbol = Symbol && Symbol.iterator
+import SYMBOL_ITERATOR from './SYMBOL_ITERATOR'
 
-export default v => {
-    if (v === undefined || v === null) throw new TypeError('Cannot convert `undefined` or `null` to array')
-    const isIter = v && typeof v.next === 'function'
-    if (Array.from && (!isIter || ($$symbol && v[$$symbol]))) return Array.from(v)
-    if (Array.isArray(v)) return [...v]
-    if (isIter) return iterToArray(v)
-    return arrLikeToArray(Object(v))
+const IS_BUILT_IN_SYMBOL = Boolean(Symbol && Symbol.iterator)
+
+export default arrLike => {
+    if (arrLike === undefined || arrLike === null) throw new TypeError('Cannot convert `undefined` or `null` to array')
+    const isIterable = typeof arrLike[SYMBOL_ITERATOR] === 'function'
+    if (Array.from && (!isIterable || (isIterable && IS_BUILT_IN_SYMBOL))) return Array.from(arrLike)
+    if (Array.isArray(arrLike)) return [...arrLike]
+    if (isIterable) return iterToArray(arrLike[SYMBOL_ITERATOR]())
+    if (isArrayLike(arrLike)) return arrLikeToArray(arrLike)
+    return []
 }
 
 function iterToArray (iter) {
@@ -14,6 +17,10 @@ function iterToArray (iter) {
     let res
     while (!(res = iter.next()).done) arr.push(res.value)
     return arr
+}
+
+function isArrayLike (o) {
+    return typeof o === 'object' && typeof o.length === 'number' && o.length % 1 === 0
 }
 
 function arrLikeToArray (arrLike) {

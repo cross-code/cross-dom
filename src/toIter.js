@@ -1,7 +1,6 @@
 import toArray from './toArray'
 import generator from './generator'
-
-const $$symbol = Symbol && Symbol.iterator
+import SYMBOL_ITERATOR from './SYMBOL_ITERATOR'
 
 const arrayToIter = generator(arr => {
     let i = 0
@@ -9,6 +8,6 @@ const arrayToIter = generator(arr => {
 })
 
 export default iterable => {
-    if ($$symbol && iterable[$$symbol]) return iterable[$$symbol]()
+    if (iterable[SYMBOL_ITERATOR]) return iterable[SYMBOL_ITERATOR]()
     return arrayToIter(Array.isArray(iterable) ? iterable : toArray(iterable))
 }

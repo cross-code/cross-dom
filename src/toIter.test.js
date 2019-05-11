@@ -1,4 +1,5 @@
 import toIter from './toIter'
+import SYMBOL_ITERATOR from './SYMBOL_ITERATOR'
 const test = require('tape')
 
 test('toIter', t => {
@@ -12,7 +13,7 @@ test('toIter', t => {
 
 test('toIter - custom iterator', t => {
     const iter = toIter([1, 2, 3])
-    iter[Symbol.iterator] = undefined
+    iter[SYMBOL_ITERATOR] = undefined
     t.deepEqual(iter.next(), { done: false, value: 1 })
     t.deepEqual(iter.next(), { done: false, value: 2 })
     t.deepEqual(iter.next(), { done: false, value: 3 })

@@ -30,26 +30,26 @@ test('$find', t => {
     t.end()
 })
 
-test.skip('$find - no duplicate child elements.', t => {
+test('$find - no duplicate child elements.', t => {
     const div1 = document.createElement('div')
     div1.innerHTML = '<div></div>'
     const div2 = document.createElement('div')
     div2.innerHTML = '<div></div><div></div>'
 
-    t.is($find('div')([div1]).length, 1)
-    t.is($find('div')([div1, div1]).length, 1)
-    t.is($find('div')([div1, div1, div2]).length, 3)
-    t.is($find('div')([div1, div1, div2, div2]).length, 3)
+    t.is(m([div1], 'div').length, 1)
+    t.is(m([div1, div1], 'div').length, 1)
+    t.is(m([div1, div1, div2], 'div').length, 3)
+    t.is(m([div1, div1, div2, div2], 'div').length, 3)
 
     t.end()
 })
 
-test.skip('$find - If not Node, ignore it.', t => {
+test('$find - If not Node, ignore it.', t => {
     t.doesNotThrow(() => $find('div')([1, 2]))
 
     const div = document.createElement('div')
     div.innerHTML = '<div></div>'
-    const $divs = $find('div')([1, 2, div])
+    const $divs = m([1, 2, div], 'div')
     t.is($divs.length, 1)
     t.true($divs[0] instanceof HTMLDivElement)
 

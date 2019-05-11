@@ -1,5 +1,5 @@
 import toArray from './toArray'
-import toIter from './toIter'
+import generator from './generator'
 const test = require('tape')
 
 const from = Array.from
@@ -23,9 +23,12 @@ test('toArray - arrayLike', t => {
     t.end()
 })
 
-test('toArray - iterator', t => {
-    const iter = toIter({ 0: 2, 1: 3, 2: 5, length: 3 })
-    t.deepEqual(toArray(iter), [2, 3, 5])
+test('toArray - iterable', t => {
+    const gen = generator(arr => () => {
+        if (arr.length === 0) return { done: true }
+        return { value: arr.shift() }
+    })
+    t.deepEqual(toArray(gen([2, 3, 5])), [2, 3, 5])
     t.end()
 })
 

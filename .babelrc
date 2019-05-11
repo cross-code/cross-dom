@@ -8,10 +8,8 @@
     ],
     "plugins": [
         [
-            "@babel/plugin-transform-modules-commonjs", {
-                "loose": true,
-                "strict": true,
-                "noInterop": true
+            "@babel/plugin-transform-runtime", {
+                "regenerator": false
             }
         ]
     ]
