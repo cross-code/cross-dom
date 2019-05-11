@@ -4,7 +4,7 @@ import SYMBOL_ITERATOR from './SYMBOL_ITERATOR'
 
 const arrayToIter = generator(arr => {
     let i = 0
-    return () => ({ done: i === arr.length, value: arr[i++] })
+    return () => i === arr.length ? { done: true } : { value: arr[i++] }
 })
 
 export default iterable => {

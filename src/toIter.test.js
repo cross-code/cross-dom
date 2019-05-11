@@ -23,9 +23,9 @@ test('toIter - custom iterator', t => {
 
 test('toIter - arrayLike', t => {
     const iter = toIter({ 0: 1, 1: 2, 2: 3, length: 3 })
-    t.deepEqual(iter.next(), { done: false, value: 1 })
-    t.deepEqual(iter.next(), { done: false, value: 2 })
-    t.deepEqual(iter.next(), { done: false, value: 3 })
-    t.deepEqual(iter.next(), { done: true, value: undefined })
+    t.deepEqual(iter.next(), { value: 1 })
+    t.deepEqual(iter.next(), { value: 2 })
+    t.deepEqual(iter.next(), { value: 3 })
+    t.deepEqual(iter.next(), { done: true })
     t.end()
 })
