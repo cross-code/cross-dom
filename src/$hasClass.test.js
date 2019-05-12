@@ -8,7 +8,7 @@ const m = (el, ...classes) => chain(
     $hasClass(...classes)
 )
 
-test.only('$hasClass', t => {
+test('$hasClass', t => {
     const div = document.createElement('div')
     div.className = 'aa bb cc'
     t.true(m(div, 'aa'))

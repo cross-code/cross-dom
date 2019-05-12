@@ -17,10 +17,6 @@ test('$addClass', t => {
     t.is(div.className, 'aa bb')
     m(div, 'cc', 'dd')
     t.is(div.className, 'aa bb cc dd')
-    t.end()
-})
-
-test('$addClass - If there is no classList, ignore it.', t => {
     t.doesNotThrow(() => m([1, 2, 3]))
     t.end()
 })
