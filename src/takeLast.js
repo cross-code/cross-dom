@@ -1,16 +1,23 @@
 import generator from './generator'
 
 export default n => generator(iter => {
-    let done = n <= 0
-    let buf = []
+    let len = n
+    let done = len <= 0
+    let buf = Array(len)
+    let i = 0
+    let j = 0
+
     return () => {
-        if (done) return buf.length > 0 ? { value: buf.shift() } : { done: true }
-        let res
-        while (!(res = iter.next()).done) {
-            if (n > 1) buf = buf.slice(-n + 1).concat(res.value)
-            if (n === 1) buf = [res.value]
+        if (done) {
+            return (j < len) ? { value: buf[(i + (++j)) % len] } : { done: true }
         }
+
+        let res
+        while (!(res = iter.next()).done) buf[i++ % len] = res.value
         done = true
-        return n > 0 ? { value: buf.shift() } : { done: true }
+
+        if (buf.length > i) buf.length = len = i
+
+        return len > 0 ? { value: buf[((--i) + (++j)) % len] } : { done: true }
     }
 })

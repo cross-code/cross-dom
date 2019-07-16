@@ -16,5 +16,8 @@ test('takeLast', t => {
     t.deepEqual(m(arr, 1), [4])
     t.deepEqual(m(arr, 2), [3, 4])
     t.deepEqual(m(arr, 3), [2, 3, 4])
+    t.deepEqual(m(arr, 4), [1, 2, 3, 4])
+    t.deepEqual(m(arr, 5), [0, 1, 2, 3, 4])
+    t.deepEqual(m(arr, 6), [0, 1, 2, 3, 4])
     t.end()
 })
