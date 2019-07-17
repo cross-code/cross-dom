@@ -1,4 +1,4 @@
-import $children from './$children'
+import children from './children'
 import chain from './chain'
 import toIter from './toIter'
 import toArray from './toArray'
@@ -6,11 +6,11 @@ const test = require('tape')
 
 const m = (el, selector) => chain(
     toIter([].concat(el)),
-    $children(selector),
+    children(selector),
     toArray
 )
 
-test('$children', t => {
+test('children', t => {
     const div = document.createElement('div')
     div.innerHTML = '<div></div><span></span><h1></h1><div></div>'
 

@@ -1,11 +1,11 @@
 import chain from './chain'
 import toIter from './toIter'
-import $removeAttr from './$removeAttr'
+import removeAttr from './removeAttr'
 const test = require('tape')
 
 const m = (el, name) => chain(
     toIter([el]),
-    $removeAttr(name)
+    removeAttr(name)
 )
 
 test('$removeAttr', t => {

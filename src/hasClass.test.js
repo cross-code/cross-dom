@@ -1,11 +1,11 @@
-import $hasClass from './$hasClass'
+import hasClass from './hasClass'
 import chain from './chain'
 import toIter from './toIter'
 const test = require('tape')
 
 const m = (el, ...classes) => chain(
     toIter([el]),
-    $hasClass(...classes)
+    hasClass(...classes)
 )
 
 test('$hasClass', t => {

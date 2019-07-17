@@ -1,20 +1,22 @@
-import $removeClass from './$removeClass'
+import addClass from './addClass'
 import chain from './chain'
 import toIter from './toIter'
 const test = require('tape')
 
 const m = (el, ...classes) => chain(
     toIter([].concat(el)),
-    $removeClass(...classes)
+    addClass(...classes)
 )
 
-test('$addClass', t => {
+test('addClass', t => {
     const div = document.createElement('div')
-    div.className = 'aa bb cc dd'
+    t.is(div.className, '')
     m(div, 'aa')
-    t.is(div.className, 'bb cc dd')
-    m(div, 'bb', 'dd')
-    t.is(div.className, 'cc')
+    t.is(div.className, 'aa')
+    m(div, 'bb')
+    t.is(div.className, 'aa bb')
+    m(div, 'cc', 'dd')
+    t.is(div.className, 'aa bb cc dd')
     t.doesNotThrow(() => m([1, 2, 3]))
     t.end()
 })

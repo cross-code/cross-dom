@@ -1,4 +1,4 @@
-import $find from './$find'
+import find from './find'
 import chain from './chain'
 import toIter from './toIter'
 import toArray from './toArray'
@@ -6,11 +6,11 @@ const test = require('tape')
 
 const m = (el, selector) => chain(
     toIter([].concat(el)),
-    $find(selector),
+    find(selector),
     toArray
 )
 
-test('$find', t => {
+test('find', t => {
     const div = document.createElement('div')
     div.innerHTML = `
         <div class="root">
@@ -30,7 +30,7 @@ test('$find', t => {
     t.end()
 })
 
-test('$find - no duplicate child elements.', t => {
+test('find - no duplicate child elements.', t => {
     const div1 = document.createElement('div')
     div1.innerHTML = '<div></div>'
     const div2 = document.createElement('div')
@@ -44,8 +44,8 @@ test('$find - no duplicate child elements.', t => {
     t.end()
 })
 
-test('$find - If not Node, ignore it.', t => {
-    t.doesNotThrow(() => $find('div')([1, 2]))
+test('find - If not Node, ignore it.', t => {
+    t.doesNotThrow(() => find('div')([1, 2]))
 
     const div = document.createElement('div')
     div.innerHTML = '<div></div>'

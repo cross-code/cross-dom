@@ -1,16 +1,16 @@
 import chain from './chain'
 import toIter from './toIter'
-import takeLast from './takeLast'
+import $takeLast from './$takeLast'
 import toArray from './toArray'
 const test = require('tape')
 
 const m = (arr, n) => chain(
     toIter(arr),
-    takeLast(n),
+    $takeLast(n),
     toArray
 )
 
-test('takeLast', t => {
+test('$takeLast', t => {
     const arr = [...Array(5).keys()]
     t.deepEqual(m(arr, 0), [])
     t.deepEqual(m(arr, 1), [4])
